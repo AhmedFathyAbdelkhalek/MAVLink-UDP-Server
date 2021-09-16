@@ -22,7 +22,7 @@ def sendSensorData():
     global timer
     
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #Create UDP socket
-    s.settimeout(0.001) #Set a timeout so code can't get "stuck"
+    s.settimeout(0.01) #Set a timeout so code can't get "stuck"
     sensorConnection = mavutil.mavlink_connection('udpout:localhost:14540') #Create MAVLink connection
     while True:
         s.sendto(b'a', address) #Send client port to server
