@@ -5,7 +5,7 @@ import socket
 import os
 import threading
 
-HOST  = '127.0.0.1' #Server IP address
+HOST  = '192.168.43.176' #Server IP address
 PORT   = 65432 #Server port
 firstTime = True #Indicates whether its the first time to call my_server()
 data_view = """""" #Store data to view on webpage
@@ -38,7 +38,7 @@ def server():
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #Allow socket to reuse port
     s.bind((HOST, PORT)) #Bind socket to port
 
-    sensorConnection = mavutil.mavlink_connection('udpin:localhost:14540') #Create a MAVLink connection to receive sensor data
+    sensorConnection = mavutil.mavlink_connection('udpin:192.168.43.176:14540') #Create a MAVLink connection to receive sensor data
 
     if firstTime:
         # Indicating the server has started
