@@ -3,9 +3,10 @@ from pymavlink import mavutil
 from msgdef import *
 import socket
 import os
+import sys
 import threading
 
-HOST  = '192.168.43.176' #Server IP address
+HOST  = '127.0.0.1' #Server IP address
 PORT   = 65432 #Server port
 firstTime = True #Indicates whether its the first time to call my_server()
 data_view = """""" #Store data to view on webpage
@@ -36,7 +37,7 @@ def server():
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #Create a UDP socket
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #Allow socket to reuse port
-    s.bind((HOST, PORT)) #Bind socket to port
+    s.bind((socket.gethostbyname(socket.gethostname()), PORT)) #Bind socket to port
 
     sensorConnection = mavutil.mavlink_connection('udpin:192.168.43.176:14540') #Create a MAVLink connection to receive sensor data
 
